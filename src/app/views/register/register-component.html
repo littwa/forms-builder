@@ -1,0 +1,9 @@
+<h3 class="title">Register Page</h3>
+<form [formGroup]="formRegister" (ngSubmit)="handleSubmit()">
+  <input placeholder="email" formControlName="email" /><br />
+  <input placeholder="password" formControlName="password" /><br />
+  <label> Agree<input type="checkbox" formControlName="agree" /></label><br />
+  <button type="submit">Send</button>
+</form>
+
+<div class="inv" *ngIf="isInvalid">Invalid data</div>

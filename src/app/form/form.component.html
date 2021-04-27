@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h4>Angular Forms</h4>
+  <div class="form-control">
+    <label>Email</label>
+    <input type="text" placeholder="Email" formControlName="email" />
+    <div class="validation" *ngIf="form.get('email').invalid">
+      Invalid Email<small>any err {{ form.get("email").errors | json }}</small>
+    </div>
+  </div>
+  <div class="form-control">
+    <label>Пароль</label>
+    <input type="password" placeholder="Пароль" formControlName="password" />
+    <div class="validation"></div>
+  </div>
+  <div class="card" formGroupName="address">
+    <h5>Address</h5>
+    <div class="form-control">
+      <label>Country</label>
+      <select formControlName="country">
+        <option value="us">USA</option>
+        <option value="ua">Ukraine</option>
+        <option value="gm">Germany</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <input type="text" formControlName="city" />
+    </div>
+    <button class="btn" type="button" (click)="setCapital()">
+      Choose the capital
+    </button>
+  </div>
+
+  <!-- <div class="card">
+    <h2>Skills</h2>
+    <button class="btn" type="button" (click)="addSkills()">ADD Skills</button>
+    <div class="form-control">
+      <label></label>
+      <input formControlName="control" type="text" />
+    </div>
+  </div> -->
+
+  <button class="btn" type="submit" [disabled]="form.invalid">
+    Submit Form
+  </button>
+</form>

@@ -1,0 +1,10 @@
+<select
+  [required]="actualValue.required"
+  [(ngModel)]="value"
+  [ngStyle]="stylesSheetSelect"
+>
+  <option selected disabled>{{ actualValue.placeholder }}</option>
+  <option *ngFor="let selItem of actualValue.select" [value]="selItem[0]">
+    {{ selItem[1] }}
+  </option>
+</select>

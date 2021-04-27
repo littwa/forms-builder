@@ -1,0 +1,21 @@
+@import 'src/assets/scss/variables';
+.head {
+  background-color: $color-5;
+  height: 30px;
+}
+.nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+.nav * {
+  padding: 5px;
+}
+.activelink {
+  color: $color-2;
+}
+a {
+  text-decoration: none;
+  color: $color-1;
+  font-weight: 500;
+}

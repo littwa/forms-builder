@@ -1,0 +1,103 @@
+<h3 class="title">Builder</h3>
+<div>
+  <div class="portals-outlet">
+    <ng-container #StylePanelContainer cdkPortalOutlet> </ng-container>
+  </div>
+
+  <div class="portals-outlet">
+    <ng-container #DropBuilderContainer cdkPortalOutlet> </ng-container>
+  </div>
+
+  <div class="portals-outlet">
+    <ng-container #DragBuilderContainer cdkPortalOutlet> </ng-container>
+  </div>
+</div>
+
+<!-- cdkDrag -->
+
+<div #DragSection class="example-container">
+  <h5>Drag section</h5>
+  <ng-template></ng-template>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="drag"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div class="example-box" *ngFor="let item of drag" cdkDrag>
+      <div [ngSwitch]="item">
+        <div *ngSwitchCase="'checkbox'"><app-checkbox></app-checkbox></div>
+        <div *ngSwitchCase="'button'"><app-button></app-button></div>
+        <div *ngSwitchCase="'input'"><app-input></app-input></div>
+        <div *ngSwitchCase="'textarea'">
+          <app-textarea></app-textarea>
+        </div>
+        <div *ngSwitchCase="'select'"><app-select></app-select></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [formGroup]="form" #DropSection class="example-container">
+  <h5>Drop section</h5>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="droper"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    [ngStyle]="stylesGeneral"
+  >
+    <div
+      class="example-box"
+      [ngStyle]="stylesGeneralInner"
+      *ngFor="let item of droper"
+      cdkDrag
+    >
+      <div [ngSwitch]="item.split('-')[0]">
+        <div *ngSwitchCase="'checkbox'">
+          <app-checkbox
+            [stylesSheetCheckbox]="getActualStyle(item)"
+            [actualValue]="getActualValue(item)"
+            formControlName="{{ item }}"
+          ></app-checkbox>
+        </div>
+        <div *ngSwitchCase="'button'">
+          <app-button
+            [stylesSheetBtn]="getActualStyle(item)"
+            [isDrop]="true"
+            [getValueForm]="getForm"
+          ></app-button>
+        </div>
+        <div *ngSwitchCase="'input'">
+          <app-input
+            [stylesSheetInput]="getActualStyle(item)"
+            [actualValue]="getActualValue(item)"
+            formControlName="{{ item }}"
+          ></app-input>
+        </div>
+        <div *ngSwitchCase="'textarea'">
+          <app-textarea
+            [stylesSheetTextarea]="getActualStyle(item)"
+            [actualValue]="getActualValue(item)"
+            formControlName="{{ item }}"
+          ></app-textarea>
+        </div>
+        <div *ngSwitchCase="'select'">
+          <app-select
+            [stylesSheetSelect]="getActualStyle(item)"
+            [actualValue]="getActualValue(item)"
+            formControlName="{{ item }}"
+          ></app-select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p *ngIf="gottenValuFromForm">
+  {{ gottenValuFromForm | json }}
+</p>

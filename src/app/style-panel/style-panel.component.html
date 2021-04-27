@@ -1,0 +1,71 @@
+<mat-accordion>
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> General Style </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="formGeneralStyle" (ngSubmit)="submitFormGeneralStyle()">
+      <div class="container_input" formGroupName="stylesGeneral">
+        <label
+          >background: <br /><input formControlName="backgroundColor"
+        /></label>
+        <label>border: <br /><input formControlName="border" /></label>
+        <label>height: <br /><input formControlName="height" /></label>
+        <label>width: <br /><input formControlName="width" /></label>
+      </div>
+      <div formGroupName="stylesGeneralInner">
+        <label
+          >background inner: <br /><input formControlName="backgroundColor"
+        /></label>
+      </div>
+      <button type="submit">Change styles</button>
+    </form>
+  </mat-expansion-panel>
+
+  <ng-container *ngrxLet="arrStyleEntreis$ as arrStyles">
+    <div *ngFor="let styles of arrStyles">
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>Style {{ styles[0] }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <form #formnative>
+          <div *ngIf="styles[0].split('-')[0] === 'select'">
+            add option:<br />
+            <input placeholder="select name" name="selectname" /><br /><input
+              placeholder="select value"
+              name="selectvalue"
+            />
+          </div>
+          <div *ngIf="styles[0].split('-')[0] !== 'button'">
+            <label
+              >placeholder text: <br /><input
+                name="placeholder"
+                [value]="styles[2].placeholder"
+            /></label>
+            <br />
+            <label
+              >required input? <br />
+              <input name="required" [value]="styles[2].required"
+            /></label>
+          </div>
+          <label *ngFor="let property of objectEntriesStyles(styles[1])">
+            {{ property[0] }}: <br /><input
+              name="{{ property[0] }}"
+              [value]="property[1]" /><br /></label
+          ><br />
+          <button (click)="changeProperty($event, styles[0], formnative)" type="button">
+            Change!
+          </button>
+          <button (click)="delProperty($event, styles[0])" type="button">
+            Delete
+          </button>
+        </form>
+      </mat-expansion-panel>
+    </div>
+  </ng-container>
+</mat-accordion>

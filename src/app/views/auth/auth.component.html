@@ -1,0 +1,15 @@
+
+<h3 class="title">Authoriztion Page</h3>
+
+<h3 *ngIf="iRegister$ | async">Register successful! Now authorise</h3>
+<form [formGroup]="form" (ngSubmit)="handleSubmitForm()">
+  <input placeholder="email" formControlName="email" /><br />
+  <input placeholder="password" formControlName="password" /><br />
+  <!-- <label> Agree<input type="checkbox" formControlName="agree" /></label><br /> -->
+  <button type="submit">Send</button>
+</form>
+<hr />
+<div *ngIf="user$ | ngrxPush as user">
+  Email: {{ user.email }} Password: {{ user.password }}
+</div>
+

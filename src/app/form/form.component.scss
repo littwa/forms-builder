@@ -1,0 +1,7 @@
+@import 'src/assets/scss/variables';
+input {
+  margin: 5px;
+}
+input.ng-invalid.ng-touched {
+  border: 2px solid $color-2;
+}

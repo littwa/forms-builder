@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "tst@mail.q",
+      "password": "1111"
+    },
+    {
+      "email": "qq@q.q",
+      "password": "1111",
+      "agree": true,
+      "id": 2
+    },
+    {
+      "email": "a@a.a",
+      "password": "1111",
+      "agree": true,
+      "id": 3
+    },
+    {
+      "email": "q@q.q",
+      "password": "1111",
+      "agree": true,
+      "id": 4
+    },
+    {
+      "email": "x@x.x",
+      "password": "1111",
+      "agree": true,
+      "id": 5
+    }
+  ]
+}
